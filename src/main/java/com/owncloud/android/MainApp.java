@@ -90,6 +90,7 @@ import javax.inject.Inject;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
 import androidx.multidex.MultiDexApplication;
@@ -188,6 +189,7 @@ public class MainApp extends MultiDexApplication implements
     @SuppressFBWarnings("ST")
     @Override
     public void onCreate() {
+        setAppTheme(preferences.getTheme());
         super.onCreate();
 
         registerActivityLifecycleCallbacks(new ActivityInjector());
@@ -735,5 +737,13 @@ public class MainApp extends MultiDexApplication implements
     @Override
     public AndroidInjector<BroadcastReceiver> broadcastReceiverInjector() {
         return dispatchingBroadcastReceiverInjector;
+    }
+
+    public static void setAppTheme(Boolean darkTheme) {
+        if (darkTheme) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 }
