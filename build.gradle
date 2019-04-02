@@ -56,9 +56,8 @@ configurations {
 
 ext {
     jacocoVersion = "0.8.2"
-    androidLibraryVersion = "master-SNAPSHOT"
+    androidLibraryVersion = "groupToUserInfo-SNAPSHOT"
     room_version = "1.1.1"
-
 
     travisBuild = System.getenv("TRAVIS") == "true"
 
