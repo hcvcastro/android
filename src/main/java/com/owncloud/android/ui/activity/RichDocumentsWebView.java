@@ -59,6 +59,8 @@ import com.owncloud.android.utils.DisplayUtils;
 import com.owncloud.android.utils.MimeTypeUtil;
 import com.owncloud.android.utils.glide.CustomGlideStreamLoader;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.parceler.Parcels;
 
 import javax.inject.Inject;
@@ -367,6 +369,19 @@ public class RichDocumentsWebView extends ExternalSiteWebView {
         @JavascriptInterface
         public void documentLoaded() {
             runOnUiThread(RichDocumentsWebView.this::hideLoading);
+        }
+
+        @JavascriptInterface
+        public void fileRename(String renameString) {
+            // when shared file is renamed in another instance, we will get notified about it
+            // need to change filename for sharing
+            try {
+                JSONObject renameJson = new JSONObject(renameString);
+                String newName = renameJson.getString("NewName");
+                file.setFileName(newName);
+            } catch (JSONException e) {
+                Log_OC.e(this, "Failed to parse rename json message: " + e);
+            }
         }
     }
 
