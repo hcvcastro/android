@@ -14,6 +14,9 @@ USER=$1
 PASS=$2
 TYPE=$4
 
+set -x
+set -e
+
 if [ $TYPE = "IT" ]; then
     cd build/reports/androidTests/connected/flavors/GPLAY
 else

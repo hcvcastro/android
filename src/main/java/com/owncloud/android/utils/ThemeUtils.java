@@ -44,9 +44,9 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
+import com.nextcloud.client.account.UserAccountManagerImpl;
 import com.owncloud.android.MainApp;
 import com.owncloud.android.R;
-import com.owncloud.android.authentication.AccountUtils;
 import com.owncloud.android.datamodel.FileDataStorageManager;
 import com.owncloud.android.lib.common.utils.Log_OC;
 import com.owncloud.android.lib.resources.status.OCCapability;
@@ -544,7 +544,8 @@ public final class ThemeUtils {
         if (acc != null) {
             account = acc;
         } else if (context != null) {
-            account = AccountUtils.getCurrentOwnCloudAccount(context);
+            // TODO: refactor when dark theme work is completed
+            account = UserAccountManagerImpl.fromContext(context).getCurrentAccount();
         }
 
         if (account != null) {

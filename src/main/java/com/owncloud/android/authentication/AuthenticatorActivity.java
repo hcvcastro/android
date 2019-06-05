@@ -89,6 +89,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.nextcloud.client.account.UserAccountManager;
 import com.nextcloud.client.di.Injectable;
+import com.nextcloud.client.onboarding.FirstRunActivity;
 import com.nextcloud.client.onboarding.OnboardingService;
 import com.nextcloud.client.preferences.AppPreferences;
 import com.owncloud.android.MainApp;
@@ -114,7 +115,6 @@ import com.owncloud.android.operations.GetServerInfoOperation;
 import com.owncloud.android.services.OperationsService;
 import com.owncloud.android.services.OperationsService.OperationsServiceBinder;
 import com.owncloud.android.ui.activity.FileDisplayActivity;
-import com.nextcloud.client.onboarding.FirstRunActivity;
 import com.owncloud.android.ui.components.CustomEditText;
 import com.owncloud.android.ui.dialog.CredentialsDialogFragment;
 import com.owncloud.android.ui.dialog.IndeterminateProgressDialog;
@@ -1705,7 +1705,7 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
             mAccountMgr.setUserData(mAccount, Constants.KEY_DISPLAY_NAME, userInfo.getDisplayName());
             mAccountMgr.setUserData(mAccount, Constants.KEY_USER_ID, userInfo.getId());
             mAccountMgr.setUserData(mAccount, Constants.KEY_OC_ACCOUNT_VERSION,
-                                    Integer.toString(AccountUtils.ACCOUNT_VERSION_WITH_PROPER_ID));
+                                    Integer.toString(UserAccountManager.ACCOUNT_VERSION_WITH_PROPER_ID));
 
 
             setAccountAuthenticatorResult(intent.getExtras());
